@@ -50,6 +50,7 @@ func GenController(name string, routes []string, body bool) {
 		}
 		f, e := os.Create(filePath)
 		if e != nil {
+			f.Close()
 			fmt.Fprintln(os.Stderr, e)
 			os.Exit(1)
 		}

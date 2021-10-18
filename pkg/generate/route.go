@@ -18,9 +18,14 @@ func GenRoute(Name string, Routes []string, validate bool) {
 		fmt.Fprint(os.Stderr, "File exist")
 		os.Exit(1)
 	}
-	f, _ := os.Create(fileName)
+	f, e := os.Create(fileName)
+	if e != nil {
+		fmt.Fprintln(os.Stderr, e)
+		os.Exit(1)
+	}
 	t, e := template.ParseFiles("templates/route.ts")
 	if e != nil {
+		f.Close()
 		fmt.Fprintln(os.Stderr, e)
 		os.Exit(1)
 	}
@@ -29,6 +34,7 @@ func GenRoute(Name string, Routes []string, validate bool) {
 		Validate: validate,
 		Routes:   Routes,
 	})
+	f.Close()
 	if e != nil {
 		fmt.Fprintln(os.Stderr, e)
 		os.Exit(1)
