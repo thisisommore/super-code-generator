@@ -23,7 +23,7 @@ func GenController(name string, routes []string, body bool) {
 		fmt.Fprintln(os.Stderr, e)
 		os.Exit(1)
 	}
-
+	os.Mkdir("controllers", os.ModePerm)
 	// Generate index.ts
 	fileDir := fmt.Sprintf("controllers/%v-controllers", name)
 	if _, err := os.Stat(fileDir); os.IsExist(err) {
@@ -50,6 +50,7 @@ func GenController(name string, routes []string, body bool) {
 		}
 		f, e := os.Create(filePath)
 		if e != nil {
+			f.Close()
 			fmt.Fprintln(os.Stderr, e)
 			os.Exit(1)
 		}
