@@ -13,6 +13,8 @@ type RouterTemplateData struct {
 }
 
 func GenRoute(Name string, Routes []string, validate bool) {
+	os.Mkdir("routes", os.ModePerm)
+
 	fileName := "routes/" + Name + "-routes.ts"
 	if _, err := os.Stat(fileName); os.IsExist(err) {
 		fmt.Fprint(os.Stderr, "File exist")
