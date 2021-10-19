@@ -73,9 +73,7 @@ export default user;`)
 		}
 	}
 
-	os.Remove(controllerRoot + "getUser.ts")
-	os.Remove(controllerRoot + "addUser.ts")
-	os.Remove(controllerRoot + "index.ts")
+	os.RemoveAll(controllerRoot)
 	os.Remove("routes/user-routes.ts")
 
 }
