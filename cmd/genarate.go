@@ -25,8 +25,9 @@ import (
 
 // gCmd represents the g command
 var gCmd = &cobra.Command{
-	Use:   "g",
-	Short: "Generates route with controllers",
+	Aliases: []string{"g"},
+	Use:     "generate",
+	Short:   "Generates route with controllers",
 	Long: `
 Generates route with controllers,
 For e.g. super-code-gen g user/updateUser`,
